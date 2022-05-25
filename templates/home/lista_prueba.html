@@ -1,0 +1,10 @@
+<h1>ListView de lista_prueba</h1>
+
+<!-- para trabajar o programar con las variables (un ejemplo es la variable lista) -->
+<!-- es necesario un template tag como el siguiente... -->
+
+{% for elemento in lista %}
+    <p>
+    {{ elemento.cantidad }} - {{ elemento.titulo }}
+    </p>
+{% endfor %}

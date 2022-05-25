@@ -1,0 +1,28 @@
+<!-- a continuacion se cargaran los estilos CSS del archivo prueba.css -->
+<!-- con {% load static %} se proceden a cargar los estilos CSS y los demas 
+archivos estaticos relacionados -->
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- en la siguinte etiqueta cambiamos el href y ponemos un tag de Django... -->
+    <!-- Con el nombre de la carpeta y del archivo que no esta dentro de más carpetas como... -->
+    <!-- para mencionarlas -->
+    <link rel="stylesheet" href="{% static 'css/foundation.css' %}">
+</head>
+<body>
+    <h1 class="ejemplo1">Hola Mundo desde los nuevos templates</h1>
+    <h2 class="ejemplo2">Cargando estilos</h2>
+
+    <!-- Anchors (links) -->
+<a href="about.html" class="button">Learn More</a>
+<a href="#features" class="button">View All Features</a>
+
+<!-- Buttons (actions) -->
+<button type="button" class="success button">Save</button>
+<button type="button" class="alert button">Delete</button>
+</body>
+</html>

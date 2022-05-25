@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/foundation.css' %}">
+</head>
+<body>
+    <h1>Resumen Foundation</h1>
+    <!-- con class="grid-x" le decimos a foundation que haga un lienzo (divide en 12 columnas) -->
+    <div class="grid-x" style="border: 1px solid green;">
+        <h2 class="cell small-12 large-5" style="border: 1px solid red">Elemento 1</h2>
+        <h2 class="cell large-4">Elemento 2</h2>
+        <h2 class="cell large-3" style="border: 1px solid blue">Elemento 3</h2>
+        <!-- class="cell large-4 grid-x" convierte el div en un lienzo hijo del lienzo de arriba -->
+        <!-- y en este caso ocupa 4 espacios de los 12 creados -->
+        <div class="cell large-4 grid-x" style="border: 1px solid yellow;">
+            <h4 class="cell large-2">Otro elemento 1</h4>
+            <h4 class="cell large-2">Otro elemento 2</h4>
+        </div>
+
+    </div>
+</body>
+</html>

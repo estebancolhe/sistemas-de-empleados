@@ -1,0 +1,17 @@
+<h1>Lista empleados por palabra clave</h1>
+<!-- para crear la caja de texto en necesaria ponerla dentro de un Form -->
+<!-- definimos que funcione por medio del metodo GET -->
+<form method="GET">{% csrf_token %}  <!-- se crea token por seguridad -->
+    <input type="text" id="keyword" name="keyword" placeholder="ingrese nombre aqui">
+    <!-- boton hace que se active el metodo GET cuando se oprime -->
+    <button type="submit">Buscar</button>
+</form>
+
+<h3>Lista resultados</h3>
+<ul>
+
+    {% for e in empleados %}
+        <li>{{ e }}</li>
+    {% endfor %}
+
+</ul>

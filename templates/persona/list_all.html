@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include "includes/header.html" %}
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">Lista Empleados</h1>
+        <form class="cell grid-x grid-margin-x" method="GET">{% csrf_token %}
+            <div class="cell large-7">
+                <input type="text" id="kword" name="kword" placeholder="buscar empleado">
+            </div>
+            <div class="cell large-2">
+                <button type="submit" class="success button">Buscar</button>
+            </div>
+        </form>
+        <div class="cell">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="200">ID</th>
+                        <th>NOMBRES</th>
+                        <th width="150">APELLIDOS</th>
+                        <th width="150">DEPARTAMENTOS</th>
+                        <th width="150">ACCION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Cuando no se declara el 'context_object_name' en la clase de la vista... -->
+                    <!-- Se puede acceder a la informacion del queryset con la variable 'object_list' -->
+                    <!-- {{object_list}} -->
+                    {% for e in empleados %}
+                    <tr>
+                        <td>{{ e.id }}</td>
+                        <td>{{ e.first_name }}</td>
+                        <td>{{ e.last_name }}</td>
+                        <td>{{ e.departamento }}</td>
+                        <!-- para que el boton funcione se debe indicar la url en el href -->
+                        <!-- y como necesita de un argumento para buscar empleado especifico -->
+                        <!-- se pasa el "e" objeto iterable y el campo id  -->
+                        <td><a class="button warning" href="{% url 'persona_app:empleado_detail' e.id %}">Ver</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="cell">
+            {% if is_paginated %}
+            <nav aria-label="Pagination">
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                    <!-- "page_obj" es la varible que tiene la informacion de la paginacion -->
+                    <!-- esa variable posee la informacion de la variable "paginate_by" de la vista -->
+                    <!-- y ".has_previous" es para ver si tiene objetos en pagina anterior-->
+                    <li class="pagination-previous">
+                        <a href="?page={{page_obj.previous_page_number}}">Atras</a>
+                    </li>
+                    {% endif %}
+                    <!-- cuando utilizamos en la vista el "paginate_by", crea un objto paginator -->
+                    <!-- y con el "page_range" obtenemos el numero de paginas correspondientes -->
+                    {% for pagina in paginator.page_range %}
+
+                    {% ifequal pagina page_obj.number %}
+                    <li class="current"><span class="show-for-sr">You're on page</span>{{ pagina }}</li>
+                    {% else %}
+                    <li><a href="?page={{pagina}}">{{ pagina }}</a></li>
+                    {% endifequal %}
+                    {% endfor %}
+                    
+                    {% if page_obj.has_next %}
+                    <li class="pagination-next">
+                        <a href="?page={{page_obj.next_page_number}}">Siguiente</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
